@@ -3,7 +3,7 @@ import winsound
 
 # Setup
 wn = turtle.Screen()
-wn.title('Pongy 4')
+wn.title('Pongy')
 wn.bgcolor('#0000FF')
 wn.tracer(0)
 wn.setup(width=800, height=700)
@@ -55,30 +55,62 @@ pen.write('Player A:{}  Player B:{}'.format(score_a, score_b), align='center', f
 
 def paddle_a_up():
 
-    y = paddle_a.ycor()
-    y += 20
-    paddle_a.sety(y)
+    if ball.dx > 0.3 or ball.dx < -0.3:
+
+        y = paddle_a.ycor()
+        y += 70
+        paddle_a.sety(y)
+
+    else:
+
+        y = paddle_a.ycor()
+        y += 20
+        paddle_a.sety(y)
 
 
 def paddle_a_down():
 
-    y = paddle_a.ycor()
-    y -= 20
-    paddle_a.sety(y)
+    if ball.dx > 0.3 or ball.dx < -0.3:
+
+        y = paddle_a.ycor()
+        y -= 70
+        paddle_a.sety(y)
+
+    else:
+
+        y = paddle_a.ycor()
+        y -= 20
+        paddle_a.sety(y)
 
 
 def paddle_b_up():
 
-    y = paddle_b.ycor()
-    y += 20
-    paddle_b.sety(y)
+    if ball.dx > 0.3 or ball.dx < -0.3:
+
+        y = paddle_b.ycor()
+        y += 70
+        paddle_b.sety(y)
+
+    else:
+
+        y = paddle_b.ycor()
+        y += 20
+        paddle_b.sety(y)
 
 
 def paddle_b_down():
 
-    y = paddle_b.ycor()
-    y -= 20
-    paddle_b.sety(y)
+    if ball.dx > 0.3 or ball.dx < -0.3:
+
+        y = paddle_b.ycor()
+        y -= 70
+        paddle_b.sety(y)
+
+    else:
+
+        y = paddle_b.ycor()
+        y -= 20
+        paddle_b.sety(y)
 
 
 # Key bindings
@@ -138,7 +170,7 @@ while True:
         ball.setx(340)
         ball.dx *= -1.1
         ball_color = ball.color('#FF0000')
-        winsound.PlaySound('paddle_bounce.wav', winsound.SND_ASYNC)  # winsound only executes wav btw
+        winsound.PlaySound('paddle_bounce.wav', winsound.SND_ASYNC)
 
     if (-350 < ball.xcor() < -340) and (paddle_a.ycor() + 60 > ball.ycor() > paddle_a.ycor() - 60):
 
@@ -146,8 +178,3 @@ while True:
         ball.dx *= -1.1
         ball_color = ball.color('#00FF00')
         winsound.PlaySound('paddle_bounce.wav', winsound.SND_ASYNC)
-
-
-
-
-
