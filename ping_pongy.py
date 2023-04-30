@@ -1,5 +1,6 @@
 import turtle
 import winsound
+import pygame
 
 # Setup
 wn = turtle.Screen()
@@ -7,6 +8,9 @@ wn.title('Pongy')
 wn.bgcolor('#0000FF')
 wn.tracer(0)
 wn.setup(width=800, height=700)
+
+# Clock
+clock = pygame.time.Clock()
 
 # Score
 score_a = 0
@@ -23,7 +27,7 @@ paddle_a.goto(-350, 0)
 
 # Paddle B
 paddle_b = turtle.Turtle()
-paddle_b.speed(0)  # Spawn rendering speed?
+paddle_b.speed(0)  
 paddle_b.shape('square')
 paddle_b.shapesize(stretch_len=1, outline=None, stretch_wid=5)
 paddle_b.penup()
@@ -51,6 +55,11 @@ pen.goto(0, 310)
 pen.write('Player A:{}  Player B:{}'.format(score_a, score_b), align='center', font=('Courier', 24, 'italic'))
 
 # Functions
+
+
+def turtle_write():
+
+    pen.write('Player A:{}  Player B:{}'.format(score_a, score_b), align='center', font=('Courier', 24, 'italic'))
 
 
 def paddle_a_up():
@@ -122,8 +131,10 @@ wn.onkeypress(paddle_b_down, 'Down')
 
 
 # Game Loop
-while True:
+run = True
+while run:
     wn.update()
+    clock.tick(800)
 
     # Ball Movement
     ball.sety(ball.ycor() + ball.dy)
@@ -138,7 +149,7 @@ while True:
         score_a += 1
         ball_color = ball.color('white')
         pen.clear()
-        pen.write('Player A:{}  Player B:{}'.format(score_a, score_b), align='center', font=('Courier', 24, 'italic'))
+        turtle_write()
         winsound.PlaySound('score.wav', winsound.SND_ASYNC)
 
     if ball.xcor() < -390:
@@ -149,7 +160,7 @@ while True:
         score_b += 1
         ball_color = ball.color('white')
         pen.clear()
-        pen.write('Player A:{}  Player B:{}'.format(score_a, score_b), align='center', font=('Courier', 24, 'italic'))
+        turtle_write()
         winsound.PlaySound('score.wav', winsound.SND_ASYNC)
 
     if ball.ycor() > 340:
@@ -178,3 +189,5 @@ while True:
         ball.dx *= -1.1
         ball_color = ball.color('#00FF00')
         winsound.PlaySound('paddle_bounce.wav', winsound.SND_ASYNC)
+
+pygame.quit()
